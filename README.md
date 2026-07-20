@@ -35,3 +35,12 @@ This list is non-exclusive
   - only the cogwheel and ? buttons are currently fully functional
  
   - disabling the section doesn't technically disable add-ons as of now: to prevent loading add-ons, they have to be removed from the tool folder
+ <br>
+ <br>
+
+## What this sample currently does:
+- refer to the code itself and the included comments to see _how_ it does things
+
+- has a simple settings section: add-on settings are functionally identical to feature sections in the main tool, but they don't have their own entry in the list on the left (they are accessed via the list in the "add-ons" section)
+
+- let's you (un)bind a hotkey: hold down the hotkey to display a tooltip with various bits of tool/game-client information (it will hide on release)

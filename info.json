@@ -1,0 +1,17 @@
+{
+  "className": "SampleAddon",
+  "creators": [
+    {
+      "name": "Lailloken",
+      "link": "https://github.com/Lailloken"
+    }
+  ],
+  "description": "'demo' add-on to showcase basics",
+  "games": [
+    "PoE1",
+    "PoE2"
+  ],
+  "name": "Sample add-on",
+  "repo": "https://github.com/Lailloken/Exile-UI-Sample-Add-On",
+  "version": "0.1.0"
+}

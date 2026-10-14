@@ -68,9 +68,10 @@
 		}
 
 		GUI := "settings_menu" vars.settings.GUI_toggle, this.hwnd.settings := {}
+		Gui, %GUI%: Add, Text, % "x" vars.settings.x_anchor " y" vars.settings.ySelection - 1 " w" settings.general.fWidth * vars.settings.min_width " h1 BackgroundTrans"	; blank text panel to force a minimum width for the settings section
 		Gui, %GUI%: Add, Text, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection " Border BackgroundTrans HWNDhwnd gURL cAqua", % " github "
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.URLs := {}, vars.URLs[hwnd] := "https://github.com/Lailloken/Exile-UI-Sample-Add-On", vars.hwnd.help_tooltips["settings_website"] := hwnd1
+		vars.URLs := {}, vars.URLs[hwnd] := "https://github.com/Lailloken/Sample-Add-On", vars.hwnd.help_tooltips["settings_website"] := hwnd1
 
 		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gURL cAqua", % " ahk: key list "
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
@@ -111,16 +112,16 @@
 			;##########################################################
 			Case (check = "save"):
 				input := LLK_ControlGet(this.hwnd.settings.hotkey), func := ObjBindMethod(this, "Hotkeys"), key := Hotkeys_Convert(input)
-				If !Blank(this.settings.hotkey_stats) && (Blank(input) || key) ; unbind the previous hotkey if applicable
-				{
-					Hotkey, IfWinActive, ahk_group poe_window
-					Hotkey, % Hotkeys_Convert(this.settings.hotkey_stats), % func, off
-				}
-				Else If !key ; check for invalid inputs
+				If !key ; check for invalid inputs
 				{
 					WinGetPos, x, y, w, h, % "ahk_id " this.hwnd.settings.hotkey
 					LLK_ToolTip(Lang_Trans("global_errorname", 2), 2, x + w, y,, "Red")
 					Return
+				}
+				If !Blank(this.settings.hotkey_stats) && (Blank(input) || key) ; unbind the previous hotkey if applicable
+				{
+					Hotkey, IfWinActive, ahk_group poe_window
+					Hotkey, % Hotkeys_Convert(this.settings.hotkey_stats), % func, off
 				}
 				Hotkey, IfWinActive, ahk_group poe_window	; set hotkey-context: only use hotkey if the PoE-client is active
 				Hotkey, % key, % func, on				; bind the new hotkey
